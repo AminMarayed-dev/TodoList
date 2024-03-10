@@ -278,7 +278,9 @@
         </tbody>
       </table> -->
     </main>
-    <footer class="flex flex-col items-center gap-4 md:flex-row md:justify-end mr-1">
+    <footer
+      class="flex flex-col items-center gap-4 md:flex-row md:justify-end mr-1"
+    >
       <div class="flex items-center gap-2">
         <span>Rows per page: </span>
         <select class="outline-none cursor-pointer">
@@ -317,5 +319,52 @@
         </span>
       </div>
     </footer>
+    <section>
+      <div
+        class="z-10 relative hidden flex-col gap-y-5 px-4 py-8 bg-purple-300 md:flex-row md:justify-evenly md:p-20 md:mx-6 md:rounded-md"
+      >
+        <input
+          type="text"
+          placeholder="task name"
+          class="p-2 outline-none rounded-md md:w-full md:rounded-l-md md:rounded-none md:border-2 md:border-purple-400"
+        />
+        <select
+          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:border-2 md:border-purple-400 md:px-4"
+        >
+          <option value="">Priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <select
+          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:border-2 md:border-purple-400 md:px-4"
+        >
+          <option value="">Status</option>
+          <option value="todo">Todo</option>
+          <option value="doing">Doing</option>
+          <option value="done">Done</option>
+        </select>
+        <button
+          class="text-slate-50 bg-purple-800 p-2 rounded-md md:w-full md:rounded-none md:rounded-r-md md:text-xl"
+        >
+          submit
+        </button>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="w-6 h-6 absolute top-1 right-1 cursor-pointer text-purple-950 md:top-3 md:right-3"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div
+        class="backdrop-brightness-50 w-screen h-screen fixed top-0 hidden"
+      ></div>
+    </section>
   </body>
 </html>
