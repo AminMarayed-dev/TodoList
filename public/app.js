@@ -35,9 +35,9 @@ function addTodo(e) {
     taskName: todoInput.value,
     priority: "low",
     status: "todo",
+    createAt: new Date().toLocaleDateString("fa-IR"),
   });
 
   // reset todo input value
   todoInput.value = "";
-  console.log(todos);
 }
