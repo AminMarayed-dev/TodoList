@@ -64,7 +64,7 @@
               />
             </svg>
           </span>
-          <span class="bg-slate-100 text-purple-800 rounded-md cursor-pointer">
+          <span class="bg-slate-100 text-purple-800 rounded-md cursor-pointer" id="show-modal">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -322,6 +322,7 @@
     <section>
       <div
         class="z-10 relative hidden flex-col gap-y-5 px-4 py-8 bg-purple-300 md:flex-row md:justify-evenly md:p-20 md:mx-6 md:rounded-md"
+        id="modal"
       >
         <input
           type="text"
@@ -364,7 +365,9 @@
       </div>
       <div
         class="backdrop-brightness-50 w-screen h-screen fixed top-0 hidden"
+        id="backdrop"
       ></div>
     </section>
+    <script src="./app.js"></script>
   </body>
 </html>
