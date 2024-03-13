@@ -90,8 +90,11 @@
         </div>
       </nav>
     </header>
-    <main id="main" class="p-2.5 md:p-0">
-      <table class="border-none border-collapse w-full mt-3 md:border md:mt-0">
+    <main class="p-2.5 md:p-0">
+      <table
+        class="border-none border-collapse w-full mt-3 md:border md:mt-0"
+        id="table"
+      >
         <!-- <thead class="hidden w-full md:flex">
           <tr class="border w-full flex justify-between">
             <th class="border p-2 w-full">Task Name</th>
@@ -100,8 +103,8 @@
             <th class="border p-2 w-full">DeadLine</th>
             <th class="border p-2 w-full">Actions</th>
           </tr>
-        </thead>
-        <tbody>
+        </thead> -->
+        <!-- <tbody>
           <tr
             class="flex flex-col items-end p-2 border md:flex-row md:w-full md:justify-between md:p-0"
           >
@@ -228,7 +231,7 @@
         </span>
       </div>
     </footer>
-    <section>
+    <section class="fixed top-6 w-full">
       <div
         class="z-10 relative hidden flex-col gap-y-5 px-4 py-8 bg-purple-300 md:flex-row md:justify-evenly md:p-20 md:mx-6 md:rounded-md"
         id="modal"
@@ -257,9 +260,7 @@
         </select>
 
         <div class="relative">
-          <div
-            class="absolute  flex items-center pointer-events-none"
-          >
+          <div class="absolute flex items-center pointer-events-none">
             <svg
               class="w-4 h-4"
               aria-hidden="true"
