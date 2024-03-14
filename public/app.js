@@ -8,6 +8,7 @@ const todoInput = document.querySelector("#input");
 const tableContainer = document.querySelector("#table");
 const priority = document.querySelector("#priority");
 const status = document.querySelector("#status");
+const date = document.querySelector('#date');
 // event
 showModalBtn.addEventListener("click", showModal);
 [closeModalBtn, backdrop].forEach((element) =>
@@ -20,6 +21,8 @@ priority.addEventListener("change", (e) => {
 status.addEventListener("change", (e) => {
   filteredStatus = e.target.value;
 });
+
+
 // default varaible
 let todos = [];
 let filteredPriority = "low";
@@ -45,7 +48,7 @@ function addTodo(e) {
     taskName: todoInput.value,
     priority: filteredPriority,
     status: filteredStatus,
-    createAt: new Date().toLocaleDateString("fa-IR"),
+    createAt: date.value,
   });
 
   // reset todo input value
