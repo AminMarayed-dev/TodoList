@@ -239,30 +239,34 @@
         <input
           type="text"
           placeholder="task name"
-          class="p-2 outline-none rounded-md md:w-full md:!rounded-l-md md:rounded-none md:border-2 md:border-purple-400"
+          class="p-2 outline-none rounded-md md:w-full md:!rounded-l-md md:rounded-none"
           id="input"
         />
         <select
-          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:border-2 md:border-purple-400 md:px-4"
+          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:px-4"
+          id="priority"
         >
-          <option value="">Priority</option>
+          <option disabled selected>Priority</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
         <select
-          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:border-2 md:border-purple-400 md:px-4"
+          class="p-2 outline-none rounded-md md:w-full md:rounded-none md:px-4"
+          id="status"
         >
-          <option value="">Status</option>
+          <option disabled selected>Status</option>
           <option value="todo">Todo</option>
           <option value="doing">Doing</option>
           <option value="done">Done</option>
         </select>
 
-        <div class="relative">
-          <div class="absolute flex items-center pointer-events-none">
+        <div class="relative w-full">
+          <div
+            class="absolute top-3 left-3  flex items-center pointer-events-none"
+          >
             <svg
-              class="w-4 h-4"
+              class="w-4 h-4 text-purple-700"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="currentColor"
@@ -276,8 +280,9 @@
           <input
             datepicker
             type="text"
-            class="p-2 md:px-4 md:py-3 w-full rounded-md"
+            class="px-3 py-2 md:p-3 w-full h-full rounded-md md:rounded-none placeholder:px-8"
             placeholder="Select date"
+            id="date"
           />
         </div>
 
