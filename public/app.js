@@ -8,7 +8,7 @@ const todoInput = document.querySelector("#input");
 const tableContainer = document.querySelector("#table");
 const priority = document.querySelector("#priority");
 const status = document.querySelector("#status");
-const date = document.querySelector('#date');
+const date = document.querySelector("#date");
 // event
 showModalBtn.addEventListener("click", showModal);
 [closeModalBtn, backdrop].forEach((element) =>
@@ -22,11 +22,11 @@ status.addEventListener("change", (e) => {
   filteredStatus = e.target.value;
 });
 
-
 // default varaible
 let todos = [];
 let filteredPriority = "low";
 let filteredStatus = "todo";
+let existedTodo;
 // function
 function showModal() {
   // show modal and backdrop
@@ -42,14 +42,22 @@ function addTodo(e) {
   // don't refresh
   e.preventDefault();
 
-  // add todo object in todos
-  todos.push({
-    id: Date.now(),
-    taskName: todoInput.value,
-    priority: filteredPriority,
-    status: filteredStatus,
-    createAt: date.value,
-  });
+  if (existedTodo) {
+    existedTodo.taskName = todoInput.value;
+    existedTodo.priority = filteredPriority;
+    existedTodo.status = filteredStatus;
+    existedTodo.date = date.value;
+    existedTodo = '';
+  } else {
+    // add todo object in todos
+    todos.push({
+      id: Date.now(),
+      taskName: todoInput.value,
+      priority: filteredPriority,
+      status: filteredStatus,
+      createAt: date.value,
+    });
+  }
 
   // reset todo input value
   todoInput.value = "";
@@ -113,7 +121,8 @@ function renderTodos(todos) {
       "p-2",
       "md:before:content-none",
       "md:border",
-      "md:justify-center",
+      // "md:justify-center",
+      "md:text-center",
     ];
     [td1, td2, td3, td4, td5].forEach((td) => td.classList.add(...tdClass));
     td5.classList.add("items-center");
@@ -145,6 +154,8 @@ function renderTodos(todos) {
     const span3 = document.createElement("span");
     span1.classList.add("bg-red-600", ...classSpan);
     span2.classList.add("bg-blue-600", ...classSpan);
+    span2.setAttribute("id", todo.id);
+    span2.classList.add("edit-todo");
     span3.classList.add("bg-gray-600", ...classSpan);
 
     const svg1 = document.createElement("svg");
@@ -154,7 +165,7 @@ function renderTodos(todos) {
       svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
       svg.setAttribute("viewBox", "0 0 24 24");
       svg.setAttribute("fill", "currentColor");
-      svg.classList.add("w-4", "h-4");
+      svg.classList.add("w-4", "h-4", "pointer-events-none");
     });
     const path1 = document.createElement("path");
     path1.setAttribute("fill-rule", "evenodd");
@@ -188,6 +199,10 @@ function renderTodos(todos) {
     tBody.append(trBody);
 
     tableContainer.append(tBody);
+
+    // edit
+    const editBtns = document.querySelectorAll(".edit-todo");
+    editBtns.forEach((editBtn) => editBtn.addEventListener("click", editTodo));
   });
 }
 
@@ -208,3 +223,11 @@ function filterPriority() {
 }
 
 function filterStatus() {}
+
+function editTodo(e) {
+  existedTodo = todos.find((todo) => todo.id == e.target.id);
+
+  showModal();
+
+  todoInput.value = existedTodo.taskName;
+}
