@@ -6,16 +6,20 @@ const backdrop = document.querySelector("#backdrop");
 const submitBtn = document.querySelector("#submit");
 const todoInput = document.querySelector("#input");
 const tableContainer = document.querySelector("#table");
-
+const priority = document.querySelector("#priority");
 // event
 showModalBtn.addEventListener("click", showModal);
 [closeModalBtn, backdrop].forEach((element) =>
   element.addEventListener("click", closeModal)
 );
 submitBtn.addEventListener("click", addTodo);
-
+priority.addEventListener("change", (e) => {
+  filteredPriority = e.target.value;
+});
 // default varaible
 let todos = [];
+let filteredPriority = "low";
+let filteredStatus = "todo";
 // function
 function showModal() {
   // show modal and backdrop
@@ -35,7 +39,7 @@ function addTodo(e) {
   todos.push({
     id: Date.now(),
     taskName: todoInput.value,
-    priority: "low",
+    priority: filteredPriority,
     status: "todo",
     createAt: new Date().toLocaleDateString("fa-IR"),
   });
@@ -71,8 +75,8 @@ function renderTodos(todos) {
 
   tableContainer.append(tHead);
 
+  const tBody = document.createElement("tbody");
   todos.forEach((todo) => {
-    const tBody = document.createElement("tbody");
     const trBody = document.createElement("tr");
     const classTrBody = [
       "flex",
@@ -115,6 +119,11 @@ function renderTodos(todos) {
     td3.setAttribute("data-label", "Status");
     td4.setAttribute("data-label", "DeadLine");
     td5.setAttribute("data-label", "Actions");
+    
+    // set color for filter priority
+    if (td2.innerText === "low") td2.classList.add("bg-slate-200");
+    else if (td2.innerText === "medium") td2.classList.add("bg-red-200");
+    else td2.classList.add("bg-blue-500");
 
     const div = document.createElement("div");
     div.classList.add("flex", "gap-3", "md:w-full", "md:justify-evenly");
@@ -169,3 +178,21 @@ function renderTodos(todos) {
     tableContainer.append(tBody);
   });
 }
+
+function filterPriority() {
+  // switch (filteredPriority) {
+  //   case "low":
+  //     console.log(todos);
+  //     renderTodos(todos);
+  //     break;
+  //   case "medium":
+  //     renderTodos(todos);
+  //     break;
+  //   case "high":
+  //     console.log(todos);
+  //     renderTodos(todos);
+  //     break;
+  // }
+}
+
+function filterStatus() {}
