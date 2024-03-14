@@ -153,6 +153,8 @@ function renderTodos(todos) {
     const span2 = document.createElement("span");
     const span3 = document.createElement("span");
     span1.classList.add("bg-red-600", ...classSpan);
+    span1.setAttribute('id', todo.id);
+    span1.classList.add('delete-todo');
     span2.classList.add("bg-blue-600", ...classSpan);
     span2.setAttribute("id", todo.id);
     span2.classList.add("edit-todo");
@@ -203,6 +205,9 @@ function renderTodos(todos) {
     // edit
     const editBtns = document.querySelectorAll(".edit-todo");
     editBtns.forEach((editBtn) => editBtn.addEventListener("click", editTodo));
+    // delete
+    const deleteBtns = document.querySelectorAll(".delete-todo");
+    deleteBtns.forEach((deleteBtn) => deleteBtn.addEventListener("click", deleteTodo));
   });
 }
 
@@ -230,4 +235,10 @@ function editTodo(e) {
   showModal();
 
   todoInput.value = existedTodo.taskName;
+}
+
+function deleteTodo(e) {
+  todos = todos.filter(todo => todo.id != e.target.id);
+  renderTodos(todos);
+
 }
