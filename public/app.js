@@ -22,11 +22,16 @@ status.addEventListener("change", (e) => {
   filteredStatus = e.target.value;
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  renderTodos(todos);
+})
 // default varaible
-let todos = [];
+let todos = getTodos();
 let filteredPriority = "low";
 let filteredStatus = "todo";
 let existedTodo;
+
+
 // function
 function showModal() {
   // show modal and backdrop
@@ -61,6 +66,7 @@ function addTodo(e) {
 
   // reset todo input value
   todoInput.value = "";
+  saveTodos(todos);
   renderTodos(todos);
 }
 
@@ -239,6 +245,16 @@ function editTodo(e) {
 
 function deleteTodo(e) {
   todos = todos.filter(todo => todo.id != e.target.id);
+  saveTodos(todos);
   renderTodos(todos);
 
+}
+
+// local storage
+function saveTodos(todos) {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function getTodos() {
+  return JSON.parse(localStorage.getItem('todos')) || [];
 }
