@@ -7,6 +7,7 @@ const submitBtn = document.querySelector("#submit");
 const todoInput = document.querySelector("#input");
 const tableContainer = document.querySelector("#table");
 const priority = document.querySelector("#priority");
+const status = document.querySelector("#status");
 // event
 showModalBtn.addEventListener("click", showModal);
 [closeModalBtn, backdrop].forEach((element) =>
@@ -15,6 +16,9 @@ showModalBtn.addEventListener("click", showModal);
 submitBtn.addEventListener("click", addTodo);
 priority.addEventListener("change", (e) => {
   filteredPriority = e.target.value;
+});
+status.addEventListener("change", (e) => {
+  filteredStatus = e.target.value;
 });
 // default varaible
 let todos = [];
@@ -40,7 +44,7 @@ function addTodo(e) {
     id: Date.now(),
     taskName: todoInput.value,
     priority: filteredPriority,
-    status: "todo",
+    status: filteredStatus,
     createAt: new Date().toLocaleDateString("fa-IR"),
   });
 
@@ -119,11 +123,16 @@ function renderTodos(todos) {
     td3.setAttribute("data-label", "Status");
     td4.setAttribute("data-label", "DeadLine");
     td5.setAttribute("data-label", "Actions");
-    
+
     // set color for filter priority
     if (td2.innerText === "low") td2.classList.add("bg-slate-200");
     else if (td2.innerText === "medium") td2.classList.add("bg-red-200");
     else td2.classList.add("bg-blue-500");
+
+    // set color for filter status
+    if (td3.innerText === "todo") td3.classList.add("bg-red-500");
+    else if (td3.innerText === "doing") td3.classList.add("bg-yellow-200");
+    else td3.classList.add("bg-green-500");
 
     const div = document.createElement("div");
     div.classList.add("flex", "gap-3", "md:w-full", "md:justify-evenly");
