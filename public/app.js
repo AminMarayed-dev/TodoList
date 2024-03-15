@@ -46,12 +46,19 @@ function addTodo(e) {
   // don't refresh
   e.preventDefault();
 
+  // set validation
+  if (todoInput.value === "" || date.value === "") {
+    alert("Error: please type field empty");
+    return;
+  }
+
   if (existedTodo) {
     existedTodo.taskName = todoInput.value;
     existedTodo.priority = filteredPriority;
     existedTodo.status = filteredStatus;
     existedTodo.date = date.value;
     existedTodo = "";
+    closeModal();
   } else {
     // add todo object in todos
     todos.push({
@@ -100,6 +107,7 @@ function renderTodos(todos) {
   tableContainer.append(tHead);
 
   const tBody = document.createElement("tbody");
+  tBody.classList.add("flex", "flex-col", "gap-8", "md:block");
   todos.forEach((todo) => {
     const trBody = document.createElement("tr");
     const classTrBody = [
@@ -132,6 +140,9 @@ function renderTodos(todos) {
       "md:border",
       "md:block",
       "md:text-center",
+      "mb-2",
+      "md:mb-0",
+      "md:p-5",
     ];
     [td1, td2, td3, td4, td5].forEach((td) => td.classList.add(...tdClass));
     td5.classList.add("items-center");
@@ -144,6 +155,7 @@ function renderTodos(todos) {
     td3.setAttribute("data-label", "Status");
     td4.setAttribute("data-label", "DeadLine");
     td5.setAttribute("data-label", "Actions");
+    td5.classList.remove("border-b-2");
 
     // set color for filter priority
     if (td2.innerText === "low") {
@@ -233,31 +245,13 @@ function renderTodos(todos) {
   });
 }
 
-// function filterPriority() {
-//   switch (filteredPriority) {
-//     case "low":
-//       renderTodos(todos);
-//       break;
-//     case "medium":
-//       renderTodos(todos);
-//       break;
-
-//     case "high":
-//       bgPriority = "bg-red-500";
-//       renderTodos(todos);
-//       break;
-//   }
-// }
-
-function filterStatus() {}
-
 function editTodo(e) {
   existedTodo = todos.find((todo) => todo.id == e.target.id);
 
   showModal();
 
   todoInput.value = existedTodo.taskName;
-  date.value = existedTodo.date;
+  date.value = existedTodo.createAt;
   priority.value = existedTodo.priority;
   status.value = existedTodo.status;
 
